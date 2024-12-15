@@ -45,7 +45,78 @@ Before starting the project, ensure you have the following:
 
 
 
-### 1. Install TurtleBot3 Packages
+#### 1. Install TurtleBot3 Packages
 Make sure you have the TurtleBot3 packages installed:
 ```bash
 sudo apt-get install ros-<ros-distro>-turtlebot3
+```
+
+#### 2. Install Camera Calibration and Lane Detection Packages
+
+To install the `ros-turtlebot3_autorace_camera` package, use the following commands:
+
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_autorace_camera.git
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
+```
+
+#### 3. Camera Calibration
+To start the camera calibration process, launch the intrinsic and extrinsic calibration:
+
+```bash
+
+roslaunch turtlebot3_autorace_camera intrinsic_camera_calibration.launch mode:=action
+roslaunch turtlebot3_autorace_camera extrinsic_camera_calibration.launch mode:=action
+```
+
+#### 4. Lane Detection
+To detect lanes and calibrate the system, run the following:
+
+```bash
+
+roslaunch turtlebot3_autorace_camera detect_lane.launch mode:=calibration
+roslaunch turtlebot3_autorace_detect detect_lane.launch mode:=action
+3. Driving the Robot
+After detecting the lanes, you can start the robot's lane-following behavior:
+```
+
+```bash
+
+roslaunch turtlebot3_autorace_driving turtlebot3_autorace_control_lane.launch
+```
+
+#### 5. Bring Up the TurtleBot3
+Ensure the robot hardware is initialized:
+```bash
+
+roslaunch turtlebot3_bringup turtlebot3_robot.launch
+```
+
+#### 6. Install Visual SLAM (ORB-SLAM2)
+To install ORB-SLAM2, follow the instructions provided in the official repository:
+
+```bash
+Copier le code
+cd ~/catkin_ws/src
+git clone https://github.com/raulmur/ORB_SLAM2.git
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
+Usage
+```
+
+#### 7. Visual SLAM (ORB-SLAM2)
+Finally, start ORB-SLAM2 for visual SLAM:
+
+```bash
+roslaunch orb_slam2_ros orb_slam2_r200_mono.launch
+```
+## Conclusion
+This project provides an autonomous navigation system for TurtleBot3, using ROS for lane detection and ORB-SLAM2 for visual SLAM. By integrating camera calibration, lane-following algorithms, and visual SLAM.
+
+
+## Future Work
+In the future, we aim to improve the robustness of lane detection and expand the SLAM implementation to include 3D mapping and localization.
