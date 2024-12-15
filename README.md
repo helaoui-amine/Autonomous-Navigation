@@ -39,6 +39,7 @@ Before starting the project, ensure you have the following:
 - **Library:** `ORB-SLAM2`
 - **Package:** `orb_slam2_ros`
   - ORB-SLAM2 is used for visual SLAM, which creates a map of the environment using the camera input.
+  - change the given file with the orginal files on the package 
   - Launch file: `orb_slam2_r200_mono`
 
 ## Installation
